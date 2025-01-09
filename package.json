@@ -1,0 +1,43 @@
+{
+  "name": "ts-fizz-buzz",
+  "version": "1.0.0",
+  "scripts": {
+    "format:write": "npx prettier --write .",
+    "format:check": "npx prettier --check .",
+    "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
+    "package": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "package:watch": "npm run package -- --watch",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gulien/ts-fizz-buzz.git"
+  },
+  "keywords": [],
+  "author": "Julien Neuhart",
+  "license": "MIT",
+  "engines": {
+    "node": ">=21"
+  },
+  "bugs": {
+    "url": "https://github.com/gulien/ts-fizz-buzz/issues"
+  },
+  "homepage": "https://github.com/gulien/ts-fizz-buzz#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/express": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "@vercel/ncc": "^0.38.3",
+    "eslint": "^8.57.0",
+    "eslint-plugin-jsonc": "^2.18.2",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "3.4.2",
+    "prettier-eslint": "^16.3.0",
+    "typescript": "^5.7.3"
+  }
+}
