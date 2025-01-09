@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express'
 import * as process from 'node:process'
 import pino from 'pino-http'
 import { getFizzBuzzRoute } from './routes/get-fizzbuzz-route'
+import { InMemoryStatsRepository } from './in-memory/in-memory-stats-repository'
+import { getStatsRoute } from './routes/get-stats-route'
 
 export const run = (): void => {
   const app = express()
@@ -17,7 +19,9 @@ export const run = (): void => {
     resp.status(200)
   })
 
-  getFizzBuzzRoute(router)
+  const statsRepository = new InMemoryStatsRepository()
+  getFizzBuzzRoute(router, statsRepository)
+  getStatsRoute(router, statsRepository)
   app.use('/api/v1', router)
 
   app.listen(port, () => {

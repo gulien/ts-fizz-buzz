@@ -8,11 +8,15 @@ import {
   LimitTooBigError,
   NotPositiveIntegerError
 } from '../../domain/fizzbuzz'
+import { StatsRepository } from '../../domain/stats-repository'
 
-export const getFizzBuzzRoute = (router: Router): void => {
-  const handler = new FizzBuzzHandler()
+export const getFizzBuzzRoute = (
+  router: Router,
+  statsRepository: StatsRepository
+): void => {
+  const handler = new FizzBuzzHandler(statsRepository)
 
-  router.get('/fizzbuzz', (req: Request, resp: Response) => {
+  router.get('/fizzbuzz', async (req: Request, resp: Response) => {
     const int1Param = req.query.int1
     const int2Param = req.query.int2
     const limitParam = req.query.limit
@@ -20,17 +24,17 @@ export const getFizzBuzzRoute = (router: Router): void => {
     const str2Param = req.query.str2
 
     if (
-      typeof int1Param !== 'string' ||
-      typeof int2Param !== 'string' ||
-      typeof limitParam !== 'string' ||
-      typeof str1Param !== 'string' ||
-      typeof str2Param !== 'string'
+        typeof int1Param !== 'string' ||
+        typeof int2Param !== 'string' ||
+        typeof limitParam !== 'string' ||
+        typeof str1Param !== 'string' ||
+        typeof str2Param !== 'string'
     ) {
       resp
-        .status(400)
-        .send(
-          'All query parameters (int1, int2, limit, str1, str2) must be provided as strings'
-        )
+          .status(400)
+          .send(
+              'All query parameters (int1, int2, limit, str1, str2) must be provided as strings'
+          )
       return
     }
 
@@ -45,16 +49,22 @@ export const getFizzBuzzRoute = (router: Router): void => {
       return
     }
 
-    const query = new FizzBuzzQuery(int1, int2, limit, str1, str2)
+    const query: FizzBuzzQuery = {
+      int1: int1,
+      int2: int2,
+      limit: limit,
+      str1: str1,
+      str2: str2
+    }
 
     try {
-      const res = handler.handle(query)
+      const res = await handler.handle(query)
       resp.status(200).json(res)
     } catch (e: unknown) {
       if (
-        e instanceof NotPositiveIntegerError ||
-        e instanceof LimitNotStrictlySuperiorToZeroError ||
-        e instanceof LimitTooBigError
+          e instanceof NotPositiveIntegerError ||
+          e instanceof LimitNotStrictlySuperiorToZeroError ||
+          e instanceof LimitTooBigError
       ) {
         resp.status(400).send(e.message)
         return
