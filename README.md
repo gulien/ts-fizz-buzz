@@ -62,7 +62,7 @@ request and the number of occurrences of this request.
 
 </details>
 
-> [!INFO] Current implementation of this endpoint relies on an in memory data
+> [!NOTE] Current implementation of this endpoint relies on an in memory data
 > source. In other words, the statistics are not persisted between runs nor are
 > they relevant in a distributed environment.
 >
