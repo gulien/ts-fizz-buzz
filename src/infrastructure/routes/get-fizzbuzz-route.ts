@@ -24,17 +24,17 @@ export const getFizzBuzzRoute = (
     const str2Param = req.query.str2
 
     if (
-        typeof int1Param !== 'string' ||
-        typeof int2Param !== 'string' ||
-        typeof limitParam !== 'string' ||
-        typeof str1Param !== 'string' ||
-        typeof str2Param !== 'string'
+      typeof int1Param !== 'string' ||
+      typeof int2Param !== 'string' ||
+      typeof limitParam !== 'string' ||
+      typeof str1Param !== 'string' ||
+      typeof str2Param !== 'string'
     ) {
       resp
-          .status(400)
-          .send(
-              'All query parameters (int1, int2, limit, str1, str2) must be provided as strings'
-          )
+        .status(400)
+        .send(
+          'All query parameters (int1, int2, limit, str1, str2) must be provided as strings'
+        )
       return
     }
 
@@ -62,9 +62,9 @@ export const getFizzBuzzRoute = (
       resp.status(200).json(res)
     } catch (e: unknown) {
       if (
-          e instanceof NotPositiveIntegerError ||
-          e instanceof LimitNotStrictlySuperiorToZeroError ||
-          e instanceof LimitTooBigError
+        e instanceof NotPositiveIntegerError ||
+        e instanceof LimitNotStrictlySuperiorToZeroError ||
+        e instanceof LimitTooBigError
       ) {
         resp.status(400).send(e.message)
         return

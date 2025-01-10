@@ -27,13 +27,7 @@ export class LimitTooBigError extends Error {
 }
 
 const mustBeValidLimit = (value: number): void => {
-  try {
-    mustBePositiveInteger(value, 'limit')
-  } catch {
-    throw new LimitNotStrictlySuperiorToZeroError(value)
-  }
-
-  if (value < 1) {
+  if (!Number.isInteger(value) || value < 1) {
     throw new LimitNotStrictlySuperiorToZeroError(value)
   }
 

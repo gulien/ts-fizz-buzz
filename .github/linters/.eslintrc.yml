@@ -1,7 +1,7 @@
 env:
   node: true
   es6: true
-  #jest: true
+  jest: true
 
 globals:
   Atomics: readonly
@@ -24,13 +24,13 @@ parserOptions:
     - './tsconfig.json'
 
 plugins:
-  #- jest
+  - jest
   - '@typescript-eslint'
 
 extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended-type-checked
-  #- plugin:jest/recommended
+  - plugin:jest/recommended
 
 rules:
   {
