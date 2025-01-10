@@ -62,9 +62,11 @@ request and the number of occurrences of this request.
 
 </details>
 
-> [!NOTE] Current implementation of this endpoint relies on an in memory data
-> source. In other words, the statistics are not persisted between runs nor are
-> they relevant in a distributed environment.
+> [!NOTE]
+>
+> Current implementation of this endpoint relies on an in memory data source. In
+> other words, the statistics are not persisted between runs nor are they
+> relevant in a distributed environment.
 >
 > However, one may provide its own data source implementation by implementing
 > the `StatsRepository` interface. Suitable data sources could be either No-SQL
