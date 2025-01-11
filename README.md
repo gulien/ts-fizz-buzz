@@ -40,7 +40,7 @@ It accepts the following query parameters:
 
 `/api/v1/fizz-buzz?int1=2&int2=0&limit=10&str1=foo&str2=bar`
 
-```
+```text
 Value 0 (int2) is not a positive integer
 ```
 
