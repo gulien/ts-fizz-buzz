@@ -9,7 +9,7 @@ A simple fizz-buzz REST server with statistics.
 Basic liveness and readiness routes, always return `200` if the server is
 running.
 
-### GET `/api/v1/fizz-buzz`
+### GET `/api/v1/fizzbuzz`
 
 This endpoint returns a JSON list of strings with numbers from 1 to `limit`,
 where: all multiples of `int1` are replaced by `str1`, all multiples of `int2`
@@ -27,7 +27,7 @@ It accepts the following query parameters:
 <details>
     <summary>Example (200 OK)</summary>
 
-`/api/v1/fizz-buzz?int1=2&int2=3&limit=10&str1=foo&str2=bar`
+`/api/v1/fizzbuzz?int1=2&int2=3&limit=10&str1=foo&str2=bar`
 
 ```json
 ["1", "foo", "bar", "foo", "5", "foobar", "7", "foo", "bar", "foo"]
@@ -38,7 +38,7 @@ It accepts the following query parameters:
 <details>
     <summary>Example (400 Bad Request)</summary>
 
-`/api/v1/fizz-buzz?int1=2&int2=0&limit=10&str1=foo&str2=bar`
+`/api/v1/fizzbuzz?int1=2&int2=0&limit=10&str1=foo&str2=bar`
 
 ```text
 Value 0 (int2) is not a positive integer
