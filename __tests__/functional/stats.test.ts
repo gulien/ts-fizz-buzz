@@ -1,9 +1,6 @@
 import { server } from '../../src/infrastructure/server'
 import request from 'supertest'
 
-// False positives.
-/* eslint-disable @typescript-eslint/no-misused-promises */
-
 describe('GET /api/v1/stats', () => {
   it('should return an empty result if no entry', async () => {
     const response = await request(server('debug')).get('/api/v1/stats')

@@ -1,9 +1,6 @@
 import { server } from '../../src/infrastructure/server'
 import request from 'supertest'
 
-// False positives.
-/* eslint-disable @typescript-eslint/no-misused-promises */
-
 describe('GET /api/v1/fizzbuzz', () => {
   it('should return a fizzbuzz result', async () => {
     const response = await request(server('debug')).get(

@@ -1,9 +1,6 @@
 import { server } from '../../src/infrastructure/server'
 import request from 'supertest'
 
-// False positives.
-/* eslint-disable @typescript-eslint/no-misused-promises */
-
 describe('GET /ready', () => {
   it('should return a 200 OK response', async () => {
     const response = await request(server('debug')).get('/ready')
